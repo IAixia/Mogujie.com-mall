@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <style>
+    .success {
+        color: green;
+    }
+    
+    .error {
+        color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        <table width="600" border="1">
+            <tr>
+                <th width="100">用户名</th>
+                <td width="200">
+                    <input type="text" name="username" value="" id="username">
+                </td>
+                <td width="300">
+                </td>
+            </tr>
+            <tr>
+                <th>密码</th>
+                <td>
+                    <input type="password" name="password" value="" id="password">
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">
+                    <input type="submit" value="提交">
+                </th>
+            </tr>
+        </table>
+    </form>
+    <script>
+    $(function() {
+        // 用户名和密码的布尔值默认为false，如果验证通过，修改为true
+        var usernameBool = false;
+        var passwordBool = false;
+
+        // 验证用户名必须是8-16位的字母数字下划线
+        // 验证密码必须是6-16位的数字
+        $('#username').blur(function() {
+            // 正则验证用户信息
+            // 1.正则
+            var reg = /^\w{8,16}$/;
+            // 2.获取用户信息
+            var value = $(this).val();
+            // 3.判断
+            if (reg.test(value)) {
+                $(this).parent().next().html('输入正确').css('color', 'green');
+                // $(this).parent().next().html('输入正确').removeClass('success error').addClass('success');
+                usernameBool = true;
+            } else {
+                $(this).parent().next().html('输入错误').css('color', 'red');
+                // $(this).parent().next().html('输入错误').removeClass('success error').addClass('error');
+                usernameBool = false;
+            }
+        })
+
+        $('#password').blur(function() {
+            // 正则验证用户信息
+            // 1.正则
+            var reg = /^\d{6,16}$/;
+            // 2.获取用户信息
+            var value = $(this).val();
+            // 3.判断
+            if (reg.test(value)) {
+                $(this).parent().next().html('输入正确').css('color', 'green');
+                passwordBool = true;
+            } else {
+                $(this).parent().next().html('输入错误').css('color', 'red');
+                passwordBool = false;
+            }
+        })
+
+        // 表单的提交事件
+        $('form').submit(function() {
+
+            // 用户名和密码都正确，则提交，否则不能提交
+            if (usernameBool && passwordBool) {
+                alert('表单正常提交');
+            } else {
+                // 阻止表单提交
+                return false;
+            }
+        })
+    })
+    </script>
+</body>
+
+</html>

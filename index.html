@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>蘑菇街</title>
+	<link rel="stylesheet" href="css/index.css" >
+	<link rel="stylesheet" href="css/cssreset.css" >
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+    
+$(function() {
+        // 图片自动轮播
+        var now = 0;
+
+        // 要做无缝滚动，则需要克隆图片
+        $('.img>li:first').clone(true).appendTo($('.img'));
+
+        // 图片总个数
+        var len = $('.img>li').length;
+
+        // 图片和数字都轮播
+        var s;
+
+        function run() {
+            s = setInterval(function() {
+                // 当图片滚动到最后一张克隆的图片的时候，马上将ul定位到第一个，并将now变为0
+                // 获取当前显示图片的索引
+                // 下次要显示的图片
+                now++;
+
+                move();
+            }, 2000);
+        }
+        run();
+
+        //  鼠标移入和移出
+        $('.div').mouseover(function() {
+            clearInterval(s);
+        }).mouseout(function() {
+            run();
+        })
+
+        // 鼠标点击数字
+        $('.num>li').click(function() {
+            console.log(now);
+            var prev = now;
+
+            now = $(this).index();
+
+            $('.img').stop().animate({
+                left: -now * 715
+            }, 1000)
+
+            $('.num li').eq(now).css('background', "#fff").end().eq(prev).css('background', '#000');
+            $('.num li').eq(now).css('color', "#000").end().eq(prev).css('color', '#fff');
+        })
+
+        $('.left').click(function() {
+            now--;
+            move();
+        })
+
+        $('.right').click(function() {
+            now++;
+            move();
+        })
+
+        function move() {
+            console.log(now);
+            // 当now的值与最大值想等的时候，将now变为0从头开会
+            if (now == len) {
+                now = 0;
+                $('.img').css('left', 0);
+            }
+
+            // console.log(now);
+            // 当now的值为最小值的时候，将now变为最大值，并且移动位置到末尾
+            if (now == -1) {
+                now = len - 2;
+                $('.img').css("left", -(len - 1) * 715);
+            }
+            // console.log(now);
+
+            $('.img').stop().animate({
+                left: -now * 715
+            }, 500);
+
+            //  当滚动到克隆的哪个图片上的时候
+            $('.num li').eq(now == len - 1 ? 0 : now).css('background', '#fff').siblings().css('background', '#000');
+            $('.num li').eq(now == len - 1 ? 0 : now).css('color', '#000').siblings().css('color', '#fff');
+        }
+    })
+
+
+  
+    </script>
+
+    
+</head>
+<body>
+<div id='gg' style='position:absolute;left:10px;top:20px;z-index:99'>
+		 <img src="./imge/ww280x280.png" alt="" style="width:100px;"></div> 
+<div id='zh' onclick="show()"><a href="#44">荐</a></div>
+     <div id='g' >
+           <button onclick="noShow()">X</button>
+           <img src="./imge/mm.jpg" style='width:190px;' alt="">
+     </div>
+<script>
+            var g = document.getElementById('g');
+         function noShow(){
+              
+               g.setAttribute('class','yc');
+         }
+         function show(){
+           
+            g.removeAttribute('class');
+         }
+      </script>
+
+<!-- 右边框==S -->
+<div class="z_r">
+<div class="z_rs">
+	<div class="z_rA">
+		<a href="#">
+			<i class="fa fa-cart-plus" aria-hidden="true"></i>
+			<div class="gz">购物车</div>
+			<div class="dx"></div>
+		</a>
+	</div>
+	<div class="z_rA">
+		<a href="#">
+			<i class="fa fa-cc-paypal" aria-hidden="true"></i>
+			<div class="gz">优惠券</div>
+			<div class="dx"></div>
+		</a>
+	</div>
+	<div class="z_rA">
+		<a href="#">
+			<i class="fa fa-credit-card" aria-hidden="true"></i>
+			<div class="gz">钱包</div>
+			<div class="dx"></div>
+		</a>
+	</div>
+	<div class="z_rA">
+		<a href="#">
+			<i class="fa fa-hand-grab-o" aria-hidden="true"></i>
+			<div class="gz">足迹</div>
+			<div class="dx"></div>
+		</a>
+	</div>
+	<div class="z_rA" style="margin-top: 155px;" usemap=".top">
+		<a href="#">
+			<div class="dx" style="margin-bottom: 5px;"></div>
+			<!-- <i class="fa fa-hand-grab-o" aria-hidden="true"></i> -->∆
+			<div class="gz">TOP</div>
+			
+		</a>
+	</div>
+	</div>
+</div>
+<div class="clin"></div>
+<!-- 右边框==E -->
+<!-- 顶部===S -->
+	<div class="top">
+		<ul>
+			<li><a href="ZhuCe.html">注册</a></li>
+			<li><a href="Login.html">登录</a></li>
+			<li>|</li>
+			<li><a href="#"><i i class="fa fa-list" aria-hidden="true"></i>我的订单</a></li>
+			<li>|</li>
+			<li class="guc"><a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i>购物车</a><div>还没有商品...</div></li>
+			<li>|</li>
+			<li class="kh"><a href="#">客户服务ⅴ</a><div>还没有商品...</div></li>
+			<li>|</li>
+			<li class="wd"><a href="#"><i class="fa fa-send" aria-hidden="true"></i>我的小店ⅴ</a><div>还没有商品...</div></li>
+			<div class="clin"></div>
+		</ul>
+			<div class="clin"></div>
+	</div>
+	<!-- 顶部===E -->
+	<!-- 搜索===S -->
+		<div class="Tops">
+		<div>
+			<div class="TopA">
+				<img src="imge/upload_ie4denjsgzrdqyleg4zdambqgiyde_207x51.png" alt="图片">
+				<div class="clin"></div>
+			</div>	
+			<div class="TopB">
+				<div class="B1">
+				<span><a class="Bs" href="#">搜商品</a><div><ul>
+					<li><a href="#">商品</a></li>
+					<li><a href="#">店铺</a></li>
+				</ul></div></span>
+					<input class="text" type="text" placeholder="小清新套装">					
+					<a href="#"><button><i class="fa fa-hand-o-left" aria-hidden="true"></i></button></a>
+					<div class="clin"></div>
+				</div>
+				<div class="B2">
+					<ul>
+						<li><a href="#">韩版连衣裙</a></li>
+						<li><a href="#">小白鞋</a></li>
+						<li><a href="#">潮T</a></li>
+						<li><a href="#">运动套装</a></li>
+						<li><a href="#">男T恤</a></li>
+						<li><a href="#">夏季小包</a></li>
+						<li><a href="#">短裤</a></li>
+						<li><a href="#">凉鞋</a></li>
+						<li><a href="#">省心套装</a></li>
+						<div class="clin"></div>
+					</ul>
+				</div>
+			</div>
+			<div class="TopC">
+				<img src="imge/upload_ifrdsnjugizgkn3ghezdambqmeyde_280x280.png" alt="二维码">
+			</div>
+			<div class="clin"></div>
+	</div>
+			
+			<div class="clin"></div>
+		</div>
+		<hr>		
+	<!-- 搜索===E -->
+	<div class="quanju">
+	<div class="Ta">
+				<ul>
+					<b><li class="Tas">全部商品</li>
+					<li><a href="#">团购</a></li>
+					<li><a href="#">快抢</a></li>
+						<div class="clin"></div>
+					</b>
+				</ul>
+			</div>
+<div id="louc">
+			<ul class="menu">
+            <li><a href="#1">1F</a></li>
+            <li><a href="#2">2F</a></li>
+            <li><a href="#3">3F</a></li>
+            <li><a href="#4">4F</a></li>
+            <li><a href="#5">5F</a></li>
+        </ul>
+		</div>
+		<script>
+    $(function() {
+        $('.menu>li').click(function() {
+            // 获取li的索引值
+            var index = $(this).index();
+
+            // 对应的楼层的到顶部的距离为多少，就让scrollTop滚动对应的距离
+            var top = $('.louc').eq(index).offset().top;
+
+            $('html,body').animate({
+                scrollTop: top
+            }, 500)
+        })
+    })
+    </script>
+	<div class="nav louc">
+	<!-- /*右导航==S*/ -->
+		<div class="nav_l">
+			<div class="primary_nav">
+			<ul id="j_primary_nav_list" class="primary_nav_list">
+				<li class="primary_nav_li primary_nav_li_first">
+										<dl class="nav_warp">
+						<dt>
+							<a target="_blank" href="http://www.mogujie.com/book/clothing?from=hpc_2">衣服</a>
+						</dt>
+						<dd>
+							<a class="" target="_blank" href="#">初夏新款</a>
+							<a class="hot" target="_blank" href="#">初夏美裙</a>
+							<a class="" target="_blank" href="#">衬衫</a>
+							<a class="" target="_blank" href="#">短袖T恤</a>
+							<a class="" target="_blank" href="#">轻薄外套</a>
+							<a class="" target="_blank" href="#">韩版短裤</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more">
+								<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">新品发布</a></dt>
+							<dd>
+									<a class="hot" target="_blank" href="#">新裙首发</a>
+									<a class="" target="_blank" href="#">风衣</a>
+									<a class="" target="_blank" href="#">雪纺衫</a>
+									<a class="" target="_blank" href="#">娃娃衫</a>
+									<a class="" target="_blank" href="#">显瘦裤子</a>
+									<a class="" target="_blank" href="#">衬衫</a>
+									<a class="" target="_blank" href="#">防晒衫</a>
+									<a class="" target="_blank" href="#">小脚裤</a>
+									<a class="" target="_blank" href="#">春款连衣裙</a>
+									<a class="" target="_blank" href="#">裙子套装</a>
+									<a class="" target="_blank" href="#">韩范卫衣</a>
+								</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">本季热卖</a></dt>
+							<dd>
+									<a class="" target="_blank" href="#">打底衫</a>
+									<a class="" target="_blank" href="#">韩范美裙</a>
+									<a class="" target="_blank" href="#">哈伦裤</a>
+									<a class="" target="_blank" href="#">连衣裙</a>
+									<a class="" target="_blank" href="#">短袖T恤</a>
+									<a class="" target="_blank" href="#">韩版短裤</a>
+									<a class="" target="_blank" href="#">半身裙</a>
+									<a class="hot" target="_blank" href="#">牛仔裤</a>
+									<a class="" target="_blank" href="#">套装</a>
+									<a class="" target="_blank" href="#">甜美睡衣</a>
+									<a class="" target="_blank" href="#">内衣套装</a>
+									<a class="" target="_blank" href="#">雪纺衫</a>
+								</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">热门推荐</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">热搜美衣</a>
+								<a class="" target="_blank" href="#">美裙榜</a>
+								<a class="" target="_blank" href="#">显瘦裤装</a>
+								<a class="" target="_blank" href="#">度假泳衣</a>
+								<a class="hot" target="_blank" href="#">情侣装</a>
+								<a class="" target="_blank" href="#">韩国同款</a>
+								<a class="" target="_blank" href="#">闺蜜装</a>
+								<a class="" target="_blank" href="#">打底基础款</a>
+								<a class="" target="_blank" href="#">甜美系</a>
+								<a class="" target="_blank" href="#">买手推荐</a>
+								<a class="" target="_blank" href="#">学院风</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp">
+						<dt>
+							<a target="_blank" href="#">鞋子</a>
+						</dt>
+						<dd>
+							<a class="hot" target="_blank" href="#">凉鞋</a>
+							<a class="" target="_blank" href="#">单鞋</a>
+							<a class="" target="_blank" href="#">运动</a>
+							<a class="" target="_blank" href="#">凉拖鞋</a>
+							<a class="" target="_blank" href="#">高跟鞋</a>
+							<a class="" target="_blank" href="#">帆布鞋</a>
+							<a class="" target="_blank" href="#">厚底鞋</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">当季热卖</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="#">热卖排行榜</a>
+								<a class="" target="_blank" href="#">凉鞋</a>
+								<a class="" target="_blank" href="#">单鞋</a>
+								<a class="" target="_blank" href="#">帆布鞋</a>
+								<a class="" target="_blank" href="#">运动鞋</a>
+								<a class="" target="_blank" href="#">优雅高跟鞋</a>
+								<a class="" target="_blank" href="#">增高厚底鞋</a>
+								<a class="" target="_blank" href="#">小白鞋</a>
+								<a class="" target="_blank" href="#">时髦乐福鞋</a>
+								<a class="" target="_blank" href="#">凉拖鞋</a>
+								<a class="" target="_blank" href="#">夏日new美鞋</a>
+								<a class="" target="_blank" href="#">极简运动鞋</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">热门推荐</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">运动凉鞋</a>
+								<a class="hot" target="_blank" href="#">沙滩鞋</a>
+								<a class="" target="_blank" href="#">乐福鞋</a>
+								<a class="" target="_blank" href="#"> 内增高</a>
+								<a class="" target="_blank" href="#"> 粗跟鞋</a>
+								<a class="" target="_blank" href="#">学生风</a>
+								<a class="" target="_blank" href="#">尖头鞋</a>
+								<a class="" target="_blank" href="#">69元封顶 </a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">经典直击</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="h#">平底鞋</a>
+								<a class="" target="_blank" href="#">豆豆鞋</a>
+								<a class="" target="_blank" href="#">坡跟鞋</a>
+								<a class="" target="_blank" href="#">厚底凉鞋</a>
+								<a class="" target="_blank" href="#">人字拖</a>
+								<a class="" target="_blank" href="#">尖头鞋</a>
+								<a class="" target="_blank" href="#">情侣款</a>
+								<a class="" target="_blank" href="#">松糕鞋</a>
+								<a class="" target="_blank" href="#">板鞋</a>
+								<a class="" target="_blank" href="#">牛津鞋</a>
+								<a class="" target="_blank" href="#">圆头鞋</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp">
+						<dt>
+							<a target="_blank" href="#">包包</a>
+						</dt>
+						<dd>
+							<a class="hot" target="_blank" href="#">夏上新</a>
+							<a class="" target="_blank" href="#">双肩</a>
+							<a class="" target="_blank" href="#">斜挎</a>
+							<a class="" target="_blank" href="#">钱包</a>
+							<a class="" target="_blank" href="#">旅行箱</a>
+							<a class="" target="_blank" href="#">手提</a>
+							<a class="" target="_blank" href="#">单肩</a>
+							<a class="" target="_blank" href="#">大包</a>
+							<a class="" target="_blank" href="#">小包</a>
+							<a class="" target="_blank" href="#">真皮</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more" style="bottom: -335px;">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">我爱</a></dt>
+							<dd>
+							<a class="" target="_blank" href="#">爱老店</a>
+							<a class="hot" target="_blank" href="#">爱精品</a>
+							<a class="" target="_blank" href="#">爱真皮</a>
+							<a class="" target="_blank" href="#">爱原创</a>
+							<a class="" target="_blank" href="#l">爱旅行</a>
+							<a class="" target="_blank" href="#">爱品牌</a>
+							<a class="" target="_blank" href="#">爱萌包</a>
+						</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="http://www.mogujie.com/book/bags/17693?from=hpc_6">款式</a></dt>
+							<dd>
+																<a class="" target="_blank" href="#">链条包</a>
+								<a class="" target="_blank" href="#">贝壳包</a>
+								<a class="" target="_blank" href="#">水桶包</a>
+								<a class="" target="_blank" href="#">方形包</a>
+								<a class="" target="_blank" href="#">复古包</a>
+								<a class="" target="_blank" href="#">卡通包</a>
+								<a class="" target="_blank" href="#">铆钉包</a>
+								<a class="" target="_blank" href="#">邮差包</a>
+								<a class="" target="_blank" href="#">马卡龙</a>
+								<a class="" target="_blank" href="#">子母包</a>
+								</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="">热门</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">链条包</a>
+								<a class="" target="_blank" href="#">贝壳包</a>
+								<a class="" target="_blank" href="#">水桶包</a>
+								<a class="" target="_blank" href="#">方形包</a>
+								<a class="" target="_blank" href="#">复古包</a>
+								<a class="" target="_blank" href="#">卡通包</a>
+								<a class="" target="_blank" href="#">铆钉包</a>
+								<a class="" target="_blank" href="#">邮差包</a>
+								<a class="" target="_blank" href="#">马卡龙</a>
+								<a class="" target="_blank" href="#">子母包</a>
+								<a class="" target="_blank" href="#">印花包</a>
+								<a class="" target="_blank" href="#">帆布包</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">流行</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">链条包</a>
+								<a class="" target="_blank" href="#">贝壳包</a>
+								<a class="" target="_blank" href="#">水桶包</a>
+								<a class="" target="_blank" href="#">方形包</a>
+								<a class="" target="_blank" href="#">复古包</a>
+								<a class="" target="_blank" href="#">卡通包</a>
+								<a class="" target="_blank" href="#">铆钉包</a>
+								<a class="" target="_blank" href="#">邮差包</a>
+								<a class="" target="_blank" href="#">马卡龙</a>
+								<a class="" target="_blank" href="#">子母包</a>
+								<a class="" target="_blank" href="#">印花包</a>
+								<a class="" target="_blank" href="#">帆布包</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp nav_warp_low">
+						<dt>
+							<a target="_blank" href="##">家居</a>
+						</dt>
+						<dd>
+							<a class="" target="_blank" href="#">四件套</a>
+								<a class="" target="_blank" href="#">枕头</a>
+								<a class="" target="_blank" href="#">夏毯</a>
+								<a class="" target="_blank" href="#">空调被</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow nav_arrow_low"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more" style="bottom: -263px;">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">温暖家纺</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">四件套</a>
+								<a class="" target="_blank" href="#">枕头</a>
+								<a class="" target="_blank" href="#">夏毯</a>
+								<a class="" target="_blank" href="#">空调被</a>
+								<a class="hot" target="_blank" href="#">抱枕</a>
+								<a class="" target="_blank" href="#">餐桌布艺</a>
+								<a class="" target="_blank" href="#">坐垫</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">精美家饰</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="#">墙贴</a>
+								<a class="" target="_blank" href="#">闹钟</a>
+								<a class="" target="_blank" href="#">灯饰</a>
+								<a class="" target="_blank" href="#">摆件</a>
+								<a class="" target="_blank" href="#">香薰</a>
+								<a class="" target="_blank" href="#">盆栽</a>
+								<a class="" target="_blank" href="#">置物架</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">生活新方式</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">整理收纳</a>
+								<a class="" target="_blank" href="#">杯子</a>
+								<a class="hot" target="_blank" href="#">个人洗护</a>
+								<a class="" target="_blank" href="#">餐具</a>
+								<a class="" target="_blank" href="#">加湿器</a>
+								<a class="" target="_blank" href="#">家用小电器</a>
+								<a class="" target="_blank" href="#l">家庭清洁</a>
+								<a class="" target="_blank" href="#">雨具</a>
+								<a class="" target="_blank" href="#">卷发棒</a>
+								<a class="" target="_blank" href="#">隐形眼镜盒</a>
+								<a class="hot" target="_blank" href="#">成人用品</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">趣意无限</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">毛绒玩具</a>
+								<a class="" target="_blank" href="#">公仔手办</a>
+								<a class="hot" target="_blank" href="#">韩国文具</a>
+								<a class="" target="_blank" href="#l#">手工DIY</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp nav_warp_low">
+						<dt>
+							<a target="_blank" href="#">配饰</a>
+						</dt>
+						<dd>
+							<a class="hot" target="_blank" href="#">手表</a>
+							<a class="" target="_blank" href="#">墨镜</a>
+							<a class="" target="_blank" href="#">韩版帽</a>
+							<a class="" target="_blank" href="#">3c配件</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow nav_arrow_low"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">当季热卖</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">手机周边</a>
+								<a class="" target="_blank" href="#l">韩版帽</a>
+								<a class="" target="_blank" href="#l">手链</a>
+								<a class="" target="_blank" href="#">iPhone壳</a>
+								<a class="" target="_blank" href="#">手表</a>
+								<a class="hot" target="_blank" href="#">项链</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">爱美装扮</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#l">耳钉</a>
+								<a class="hot" target="_blank" href="#">戒指</a>
+								<a class="" target="_blank" href="#">锁骨链</a>
+								<a class="" target="_blank" href="#">手链表</a>
+								<a class="" target="_blank" href="#">手镯</a>
+								<a class="" target="_blank" href="#">耳环</a>
+								<a class="" target="_blank" href="#">发箍</a>
+								<a class="" target="_blank" href="#l">发夹</a>
+								<a class="" target="_blank" href="#">头绳</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">加分配件</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">手机壳</a>
+								<a class="" target="_blank" href="#">腰带</a>
+								<a class="" target="_blank" href="#">框架眼镜</a>
+								<a class="hot" target="_blank" href="#">墨镜</a>
+								<a class="" target="_blank" href="#">纹身贴</a>
+								<a class="" target="_blank" href="#">胸针</a>
+								<a class="" target="_blank" href="#">假发</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">出街帽子</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="#">棒球帽</a>
+								<a class="" target="_blank" href="#">韩版帽</a>
+								<a class="" target="_blank" href="#">鸭舌帽</a>
+								<a class="" target="_blank" href="#">宽檐帽</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp nav_warp_low">
+						<dt>
+							<a target="_blank" href="#">美妆</a>
+						</dt>
+						<dd>
+							<a class="hot" target="_blank" href="#">超值大牌</a>
+							<a class="" target="_blank" href="#">面膜</a>
+							<a class="" target="_blank" href="#">BB霜</a>
+							<a class="" target="_blank" href="#">套装</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+<!-- 
+					<i class="nav_arrow nav_arrow_low"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div class="nav_more">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">护肤</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">洁面</a>
+								<a class="hot" target="_blank" href="#">面膜</a>
+								<a class="" target="_blank" href="#">化妆水</a>
+								<a class="" target="_blank" href="#">乳霜</a>
+								<a class="" target="_blank" href="#">套装</a>
+								<a class="" target="_blank" href="#">眼唇护理</a>
+								<a class="" target="_blank" href="#">护唇膏</a>
+								<a class="" target="_blank" href="#">T区护理</a>
+								<a class="" target="_blank" href="#">精华</a>
+								<a class="" target="_blank" href="#">防晒</a>
+								<a class="" target="_blank" href="#">工具</a>
+								<a class="" target="_blank" href="#">男士护肤</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">彩妆</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">妆前隔离</a>
+								<a class="" target="_blank" href="#">BB霜</a>
+								<a class="" target="_blank" href="#">遮瑕粉底</a>
+								<a class="" target="_blank" href="#">定妆散粉</a>
+								<a class="hot" target="_blank" href="#">口红</a>
+								<a class="" target="_blank" href="#">睫毛膏</a>
+								<a class="" target="_blank" href="#">眼影眼线</a>
+								<a class="" target="_blank" href="#">眉笔眉粉</a>
+								<a class="" target="_blank" href="#">修容&amp;腮红</a>
+								<a class="" target="_blank" href="#">阴影&amp;高光</a>
+								<a class="" target="_blank" href="#">彩妆工具</a>
+								<a class="" target="_blank" href="#">彩妆套装</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">美体</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">洗发护发</a>
+								<a class="" target="_blank" href="#">美发造型</a>
+								<a class="" target="_blank" href="#">沐浴乳</a>
+								<a class="" target="_blank" href="#">身体乳</a>
+								<a class="hot" target="_blank" href="#">塑形瘦身</a>
+								<a class="" target="_blank" href="#">指甲油</a>
+								<a class="" target="_blank" href="#">香水</a>
+								<a class="" target="_blank" href="#">精油</a>
+								<a class="" target="_blank" href="#">手足护理</a>
+								<a class="" target="_blank" href="#">局部护理</a>
+								<a class="" target="_blank" href="#">美体套装</a>
+								<a class="" target="_blank" href="#">美体工具</a>
+								<a class="" target="_blank" href="#">口腔护理</a>
+								<a class="" target="_blank" href="#">女性护理</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+				<li class="primary_nav_li">
+										<dl class="nav_warp nav_warp_btm">
+						<dt>
+							<a target="_blank" href="#">男友</a>
+						</dt>
+						<dd>
+							<a class="hot" target="_blank" href="#">热卖新品</a>
+							<a class="" target="_blank" href="#">短袖T恤</a>
+							<a class="" target="_blank" href="#">休闲短裤</a>
+							<a class="" target="_blank" href="#">必备衬衫</a>
+						</dd>
+						<!-- 栏目导航列表 *n -->
+					</dl>
+					<!-- 栏目导航 -->
+
+					<!-- <i class="nav_arrow nav_arrow_btm"></i>
+					<i class="nav_line_bottom"></i>
+					<i class="nav_line_right"></i> -->
+					<!-- 导航辅助：箭头、底线、右侧线 -->
+
+					<div  class="nav_more">
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">最热卖</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="#">衬衫</a>
+								<a class="" target="_blank" href="#">T恤</a>
+								<a class="" target="_blank" href="#">休闲短裤</a>
+								<a class="" target="_blank" href="#">防晒外套</a>
+								<a class="" target="_blank" href="#">拖鞋</a>
+								<a class="" target="_blank" href="#">POLO衫</a>
+								<a class="" target="_blank" href="#">牛仔裤</a>
+								<a class="" target="_blank" href="#">低帮鞋</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="#">最有型</a></dt>
+							<dd>
+								<a class="" target="_blank" href="#">绅士皮鞋</a>
+								<a class="hot" target="_blank" href="#">懒人鞋</a>
+								<a class="" target="_blank" href="#">双肩包</a>
+								<a class="" target="_blank" href="#">钱包卡套</a>
+								<a class="" target="_blank" href="#">运动鞋</a>
+								<a class="" target="_blank" href="#">休闲裤</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+												<dl class="nav_more_warp">
+							<dt><a target="_blank" href="">最经典</a></dt>
+							<dd>
+								<a class="hot" target="_blank" href="#">条纹</a>
+								<a class="" target="_blank" href="#">牛仔</a>
+								<a class="" target="_blank" href="#">印花</a>
+								<a class="" target="_blank" href="#">纯色</a>
+								<a class="" target="_blank" href="#">格子</a>
+							</dd>
+							<!-- 更多栏目导航列表 *n -->
+						</dl>
+											</div>
+					<!-- 更多栏目导航 -->
+				</li>
+			</ul>
+			<!-- 首屏栏目导航列表 *6 -->
+		</div>
+		</div>
+		 <script>
+  <!-- //   // 链式调用 -->
+	      $('.nav_warp').mouseover(function() {
+	         // 改变当前的背景颜色
+	         // $(this).css('background', '#ddd');
+	         // $(this):代表的是当前移入的h3对象
+	         $(this).next().show();
+	     }).mouseout(function() {
+	         // 移出改变背景颜色
+	         // $(this).css('background', 'red');
+	         // 隐藏
+	         $(this).next().hide();
+	     }) 
+     </script>
+		<!-- /*右导航==E*/ -->
+		<!-- 轮播图===S -->
+		<div class="nav_center">
+			<div class="div">
+		<ul class="img">
+			<li><a href="#1"><img src="imge/a.png"></a></li>
+			<li><a href="#2"><img src="imge/b.jpg"></a></li>
+			<li><a href="#3"><img src="imge/c.jpg"></a></li>
+			<li><a href="#4"><img src="imge/d.jpg"></a></li>
+			<!-- <li><a href="#5"><img src="imge/a.png"></a></li>
+			<li><a href="#6"><img src="imge/c.jpg"></a></li> -->
+		</ul>
+		<ol class="num">
+			<li class="count">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<!-- <li>5</li>
+			<li>6</li> -->
+		</ol>
+		
+	</div>
+		</div>
+		<!-- 轮播图===E -->
+		<!-- 右图==S -->
+		<div class="nav_r">
+		<ul>
+			<li><a href="#"><img src="imge/upload_5b4e2c3lejb1b4hgfb9gkjfc97jl0_180x220.jpg" alt=""></a></li>
+			<li><a href="#"><img src="imge/260_564f7eg8k6871a07fa758l319eeaj_180x220.jpg" alt=""></a></li>
+		</ul>	
+		</div>
+		<!-- 右图==E -->
+		<div class="clin"></div>
+	</div>
+	<!-- 显示快抢=====S -->
+	<div class="cent louc">
+		<div class="count">
+		<ul>
+			<li><img src="./imge/s3_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s4_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s5_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s6_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s7_640x960.jpg_320x999.webp"></li>
+
+			<li><img src="./imge/s3_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s4_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s5_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s6_640x960.jpg_320x999.webp"></li>
+			<li><img src="./imge/s7_640x960.jpg_320x999.webp"></li>
+		</ul>
+	</div>
+	<img src="./imge/bby.jpg" alt="" style="float: right;margin-top: -268px;height: 268px;">
+
+			<div class="clin"></div>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	$(function () {
+		 var ul = $('.count ul');
+		 var timer;
+		  $('.count>li:first').clone(true).appendTo($('.count'));
+		timer=window.setInterval(function () {
+		 	ul.css('left','-=2px');
+		 	if(ul.css('left')=='-1000px')
+		 	{
+		 		ul.css('left','0px')
+		 	}
+		 },30);
+
+		ul.mouseover(function() {
+			
+			clearInterval(timer);
+		});
+		ul.mouseout(function() {
+			timer=window.setInterval(function () {
+		 	ul.css('left','-=2px');
+		 	if(ul.css('left')=='-1000px')
+		 	{
+		 		ul.css('left','0px')
+		 	}
+		 },30);
+		});
+
+		 
+	})
+</script>
+
+	<!-- 显示快抢=====E -->
+	<!-- 蘑菇良品====S -->
+	<div class="liangpin louc">
+		<div class="heng"><img src="imge/YT$E5JLFQDSNI3$L1NCV{86.png" alt=""></div>
+		<div class="fang">
+			<div class="fang_l">
+				<ul>
+					<li><a href="#"><img src="imge/z.png" alt=""></a></li>
+					<li><a href="#"><img src="imge/upload_ie4dozbvmm3tcmzxhezdambqgiyde_170x170.png" alt=""></a></li>
+				</ul>
+				<ul class="aa">
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<li><a href="#">初秋尝鲜</a></li>
+					<div class="clin"></div>
+				</ul>
+			</div>
+			<div class="fang_r">
+				<ul class="r1">
+					<li><a href="#"><img src="imge/s2.jpg" alt=""></a></li>
+					<li><a href="#"><img src="imge/s1.jpg" alt=""></a></li>
+					<li><a href="#"><img src="imge/s2.jpg" alt=""></a></li>
+					<div class="clin"></div>
+				</ul>
+				<ul class="r2">
+					<li>
+						<a href="#">
+						<img src="imge/x.jpg" alt="">
+						<p>低价连衣裙</p>
+						<span>品质当道约会必备</span>
+						</a>
+					</li>
+					<li><a href="#"><img src="imge/x1.jpg" alt=""><p>低价连衣裙</p><span>品质当道约会必备</span></a></li>
+					<li><a href="#"><img src="imge/x2jpg.jpg" alt=""><p>低价连衣裙</p><span>品质当道约会必备</span></a></li>
+					<div class="clin"></div>
+				</ul>
+			</div>
+			<div class="clin"></div>
+		</div>
+	</div>
+
+	<!-- 蘑菇良品====E -->
+	<!-- 品牌站====S -->
+		<div class="liangpin louc" >
+		<div class="heng"><img src="imge/NM`~USXAA9TJWB8O221QYNT.png" alt=""></div>
+		<div class="fang">
+			<div class="fang_l" style=" ">
+				<ul>
+					<li><a href="#"><img src="imge/8j_ifqwgmbvga3tgmzuhezdambqgyyde_170x170.png" alt=""></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+				<ul class="aa">
+					<li class="pinpai"><a href="#"><img src="imge/p2-160811-upload_3cd75lcfkd2kj0dfcfck21b4a0lh6_111x60.jpg" alt=""></a></li>
+					<li class="pinpai"><a href="#"><img src="imge/lljpg.jpg" alt=""></a></li>
+					<li class="pinpai"><a href="#"><img src="imge/upload_1a6c50bifhb7ekj0a7geej1ie5b59_111x60.jpg" alt=""></a></li>
+					<li class="pinpai"><a href="#"><img src="imge/upload_2f09bgbh7jbb1jjlbkd1aej3j3j68_111x60.jpg#" alt=""></a></li>
+					<div class="clin"></div>
+				</ul>
+			</div>
+			<div class="fang_r">
+				<ul class="r1">
+					<li><a href="#"><img src="imge/s2.jpg" alt=""></a></li>
+					<li><a href="#"><img src="imge/s1.jpg" alt=""></a></li>
+					<li><a href="#"><img src="imge/s2.jpg" alt=""></a></li>
+					<div class="clin"></div>
+				</ul>
+				<ul class="r2">
+					<li>
+						<a href="#">
+						<img src="imge/x.jpg" alt="">
+						<p>低价连衣裙</p>
+						<span>品质当道约会必备</span>
+						</a>
+					</li>
+					<li><a href="#"><img src="imge/x1.jpg" alt=""><p>低价连衣裙</p><span>品质当道约会必备</span></a></li>
+					<li><a href="#"><img src="imge/x2jpg.jpg" alt=""><p>低价连衣裙</p><span>品质当道约会必备</span></a></li>
+					<div class="clin"></div>
+				</ul>
+			</div>
+			<div class="clin"></div>
+		</div>
+	</div>
+	<!-- 品牌站====S -->
+		</div>
+		 
+	<!-- 底部==S -->
+	<div id="footer">
+		<div class="foots">
+			<img src="imge/upload_ie4denjsgzrdqyleg4zdambqgiyde_207x51.png" alt="">
+			<p>营业执照注册号：<a href="#">330106000129004</a></p>
+			<p>增值电信业务经营许可证：浙B2-20110349</p>
+			<p> 浙公网安备 33010602002329号</p>
+			<p>©2016 Mogujie.com 杭州卷瓜网络有限公司</p>
+		</div>
+		<div class="hehe">
+
+		<div class="helpTit">
+			<dl>
+				<dt>新手上路</dt>
+					<dd><a href="">交易协议</a></dd>
+					<dd><a href="">注册条款</a></dd>
+					<dd><a href="">找回密码</a></dd>
+					<dd><a href="">新用户注册</a></dd>
+					
+				
+			</dl>
+			<dl>
+				<dt>新手上路</dt>
+					<dd><a href="">交易协议</a></dd>
+					<dd><a href="">注册条款</a></dd>
+					<dd><a href="">找回密码</a></dd>
+					<dd><a href="">新用户注册</a></dd>
+					
+				
+			</dl>
+			<dl>
+				<dt>新手上路</dt>
+					<dd><a href="">交易协议</a></dd>
+					<dd><a href="">注册条款</a></dd>
+					<dd><a href="">找回密码</a></dd>
+					<dd><a href="">新用户注册</a></dd>
+					
+				
+			</dl>
+			<dl>
+				<dt>新手上路</dt>
+					<dd><a href="">交易协议</a></dd>
+					<dd><a href="">注册条款</a></dd>
+					<dd><a href="">找回密码</a></dd>
+					<dd><a href="">新用户注册</a></dd>
+					
+				
+			</dl>
+			<dl>
+				<dt>新手上路</dt>
+					<dd><a href="">交易协议</a></dd>
+					<dd><a href="">注册条款</a></dd>
+					<dd><a href="">找回密码</a></dd>
+					<dd><a href="">新用户注册</a></dd>
+					
+				
+			</dl>	
+		</div>
+		<div class="footer_right"> 
+
+			<ul>
+				<li style="padding-top:52px">
+					<img src="imge/5D30.tmp.jpg" alt="">
+				</li>
+				<li >
+					<img src="imge/95B2.tmp.jpg" alt="">
+				</li>
+			</ul>
+		</div>
+		
+		<div class="clin"></div>
+		</div>
+	</div>
+	<!-- <hr style="padding: 10px 0"> -->
+	<div class="end">
+		<p style="color:#999999;">
+	 <ul>
+			<li class="ends">友情链接</li>
+			<li><a href="#">蘑菇街游戏</a></li>
+			<li><a href="#">淘粉吧</a></li>
+			<li><a href="#">穿衣搭配</a></li>
+			<li><a href="#">蘑菇街男装</a></li>
+			<li><a href="#">蘑菇街鞋子</a></li>
+			<li><a href="#">QQ钱包</a></li>
+			<li><a href="#">家居网</a></li>
+			<li><a href="#">时尚品牌</a></li>
+			<li><a href="#">装修</a></li>
+			<li><a href="#">蘑菇街母婴</a></li>
+			<li><a href="#">衣联网</a></li>
+			<li><a href="#">博士网</a></li>
+			<li><a href="#">慧聪网</a></li>
+		</ul></p>
+	</div>
+	<!-- 底部-==E -->
+	  <script src="js/index.js"></script>
+	 <script type="text/javascript" src="./js/jquery.js"></script>
+</body>
+</html>

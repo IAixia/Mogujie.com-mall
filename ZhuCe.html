@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<script src="./js/ajax3.0-min.js"></script>
+		<script src="js/jquery-1.8.3.min.js"></script>
+	</head>
+	<body>
+		<div class="wrap login_wrap">
+			<div class="content">
+				
+				<div class="logo"></div>
+				
+				<div class="login_box">	
+					
+					<div class="login_form">
+						<div class="login_title">
+							注册
+						</div>
+						<form action="ZhuCe.html" method="post">
+							
+							<div class="form_text_ipt">
+								<input id="username" name="username" type="text" class="" ="user" placeholder="手机号/邮箱">
+							</div>
+							<div class="ececk_warning"></div>
+							<div class="form_text_ipt">
+								<input id="password" name="password"  type="password" class="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"></div>
+							<div class="form_text_ipt">
+								<input id="repassword" name="repassword" type="password" class="password" placeholder="重复密码">
+							</div>
+							<div class="ececk_warning"></div>
+							
+							<div class="form_btn">
+							<button type="submit" >注册</button>
+							</div>
+							<div class="form_reg_btn">
+								<span>已有帐号？</span><a href="./Login.html">马上登录</a>
+							</div>
+						</form>
+						<div class="other_login">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<script>
+    // 当input失去焦点的时候，验证用户名是否存在
+    // 1.获取对象
+    var username = document.getElementById('username');
+
+    // 2.失去焦点
+    username.onblur = function() {
+        // 获取input的值(获取用户输入的值)
+        var value = this.value;
+
+        // 将用户输入的内容发送到服务器，进行检验判断是否存在存在
+        Ajax().get('./js/yanzajax.php?username=' + value, function(msg) {
+            console.log(msg);
+            if (msg == 1) {
+                alert('该用户已经被注册');
+            } else {
+                alert('该用户还没有被注册');
+            }
+        })
+    }
+    </script>
+
+		<script type="text/javascript">
+			$(function() {
+	        // 用户名和密码的布尔值默认为false，如果验证通过，修改为true
+	        var usernameBool = false;
+	        var passwordBool = false;
+	        var repasswordBool = false;
+
+	        // 验证用户信息
+	        $('#username').blur(function() {
+	           
+	            var reg = /^\w{8,16}$/;
+	            var value = $(this).val();
+	           
+	            if (reg.test(value)) {
+	                $(this).parent().next().html('输入正确').css('color', 'green');
+	                usernameBool = true;
+	            } else {
+	                $(this).parent().next().html('输入错误').css('color', 'red');
+	                usernameBool = false;
+	            }
+	        })
+
+			// 验证密码信息
+	        $('#password').blur(function() {
+
+	            var reg = /^\d{6,16}$/;
+	            var value = $(this).val();
+
+	            if (reg.test(value)) {
+	                $(this).parent().next().html('输入正确').css('color', 'green');
+	                passwordBool = true;
+	            } else {
+	                $(this).parent().next().html('输入错误').css('color', 'red');
+	                passwordBool = false;
+	            }
+	        })
+	        // 验证重复的密码信息
+	        $('#repassword').blur(function(){
+	        	//获取值
+	        	var psd = $('#password').val()
+				var repsd =$('#repassword').val()
+	        	// passwordBool = true;
+	        	if (psd == repsd) {
+	        		$(this).parent().next().html('输入正确').css('color', 'green');
+	        		repasswordBool = true;
+	        	}else{
+	        		$(this).parent().next().html('两次密码输入不一样!!!').css('color', 'red');
+	        		repasswordBool = false;
+	        	}
+	        })
+
+	        // 表单的提交事件
+	        $('form').submit(function() {
+	            if (usernameBool && passwordBool && repasswordBool) {
+	                alert('表单正常提交');
+	            } else {
+	                
+	                return false;
+	            }
+	        })
+    })
+
+
+		</script>
+	</body>
+</html>
